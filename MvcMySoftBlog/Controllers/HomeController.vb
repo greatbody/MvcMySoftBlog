@@ -3,12 +3,17 @@ Public Class HomeController
     Inherits System.Web.Mvc.Controller
 
     Function Index() As ActionResult
-        ViewData("Message") = "欢迎使用 ASP.NET MVC!"
-
+        SetCurrent("Index")
         Return View()
     End Function
 
     Function About() As ActionResult
         Return View()
     End Function
+
+#Region "公共函数"
+    Public Sub SetCurrent(ByVal PageName As String)
+        ViewData(PageName) = "class=""active"""
+    End Sub
+#End Region
 End Class
