@@ -10,6 +10,11 @@ Public Class HomeController
     Function About() As ActionResult
         Return View()
     End Function
+    <HttpPost()> _
+    Function Rt() As ActionResult
+
+        Return View("JsonTest")
+    End Function
 
 #Region "公共函数"
     Public Sub SetCurrent(ByVal PageName As String)
