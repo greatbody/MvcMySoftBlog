@@ -12,7 +12,7 @@
             <%= art(0).ArticleTitle%>
         </div>
         <div class="panel-group"></div>
-        <div class="panel-body"><%= art(0).ArticleContent%></div>
+        <div class="panel-body" style="min-height: 550px;"><%= art(0).ArticleContent%></div>
         <div class="panel-footer text-center">CopyLeft Sunsoft@2015-2020 All Rights Released</div>
     </div>
 </asp:Content>

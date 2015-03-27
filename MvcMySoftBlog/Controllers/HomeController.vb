@@ -19,20 +19,7 @@ Public Class HomeController
         Return Json(View("JsonTest").ViewData)
     End Function
 
-    Function Article(ByVal id As Integer) As ActionResult
 
-        Dim db As New BlogDbDataContext
-        Dim articleses As IQueryable(Of Articles) = From wenzhang In db.Articles Where wenzhang.ID = id
-        ViewData("Page") = "article"
-        If articleses Is Nothing Then
-            SetCurrent("NoArticleFound")
-            Return View("NoArticleFound")
-        Else
-            SetCurrent("Article")
-            ViewData("ArticleContent") = articleses
-            Return View("Article")
-        End If
-    End Function
 #Region "公共函数"
     Public Sub SetCurrent(ByVal PageName As String)
         ViewData(PageName) = "class=""active"""
