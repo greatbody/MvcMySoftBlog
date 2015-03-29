@@ -470,7 +470,7 @@
     <Content Include="Views\Article\Article.aspx" />
     <Content Include="Views\Article\Create.aspx" />
     <Content Include="Views\Article\Edit.aspx" />
-    <Content Include="Views\Article\Error.aspx" />
+    <Content Include="Views\Article\ErrorPage.aspx" />
     <Content Include="Views\Article\Index.aspx" />
     <Content Include="Views\Home\JsonTest.aspx" />
     <Content Include="Views\Article\NoArticleFound.aspx" />

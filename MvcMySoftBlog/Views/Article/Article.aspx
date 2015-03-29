@@ -8,7 +8,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% Dim art = CType(ViewData("ArticleContent"), IEnumerable(Of Articles))%>
     <div class="row panel panel-default">
-        <div class="text-center panel-heading">
+        <div class="text-center panel-heading" style="font-weight: bold;font-size: 16px;color: #a18f8f">
             <%= art(0).ArticleTitle%>
         </div>
         <div class="panel-group"></div>

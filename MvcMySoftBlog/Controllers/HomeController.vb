@@ -29,8 +29,8 @@ Public Class HomeController
     Public Function GetList() As IQueryable(Of Articles)
         Dim articles As IQueryable(Of Articles)
         Dim db As New BlogDbDataContext
-        articles = From articleCollection In db.Articles Select articleCollection
-        Return articles
+        articles = From articleCollection In db.Articles Select articleCollection Order By articleCollection.CreatedOn Descending
+        Return articles.Take(5)
     End Function
 #End Region
 End Class

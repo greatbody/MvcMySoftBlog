@@ -38,24 +38,23 @@
         ' POST: /Article/Create
         <ValidateInput(False)> _
         <HttpPost()> _
-        Function Create(ByVal title As String, ByVal content As String) As ActionResult
+        Function Create(ByVal formCollection As FormCollection) As ActionResult
             Try
                 ' TODO: Add insert logic here
+                Dim newArticle As New Articles
                 Using db As New BlogDbDataContext
-                    Dim newArticle As New Articles
-                    newArticle.ArticleTitle = title
-                    newArticle.ArticleContent = content
+                    newArticle.ArticleTitle = formCollection("title")
+                    newArticle.ArticleContent = formCollection("content")
                     newArticle.CreatedOn = Now
                     newArticle.IsCaoGao = False
                     newArticle.LastUpdate = Now
                     newArticle.UserID = GlobalBase.GetUserID()
                     db.Articles.InsertOnSubmit(newArticle)
-
                     db.SubmitChanges()
                 End Using
-                Return Json(New With {.Result = True})
+                Return Json(New With {.redirect = "/Article/Article/" & newArticle.ID.ToString()})
             Catch ex As Exception
-                Return Json(New With {.Result = False})
+                Return Json(New With {.redirect = "/Article/ErrorPage"})
             End Try
         End Function
 
@@ -76,7 +75,7 @@
 
                 Return RedirectToAction("Index")
             Catch
-                Return View("Error")
+                Return View("ErrorPage")
             End Try
         End Function
 
@@ -87,7 +86,7 @@
             Try
                 Return RedirectToAction("Index")
             Catch ex As Exception
-                Return View("Error")
+                Return View("ErrorPage")
             End Try
 
         End Function
@@ -102,8 +101,12 @@
 
                 Return RedirectToAction("Index")
             Catch
-                Return View("Error")
+                Return View("ErrorPage")
             End Try
+        End Function
+
+        Function ErrorPage() As ActionResult
+            Return View()
         End Function
 
 #Region "公共函数"

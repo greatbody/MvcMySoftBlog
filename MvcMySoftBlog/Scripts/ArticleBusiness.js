@@ -4,9 +4,8 @@ var Article = {
         ///<field name="title">标题</field>
         ///<field name="content">文章html内容</field>
         $.post("/Article/Create", { "title": title, "content": content }, function (data) {
-            var oRtn = data;
-            if (oRtn && oRtn.Result == true) {
-                location.href = "/";
+            if (data) {
+                location.href = data.redirect;
             }
         });
     }
