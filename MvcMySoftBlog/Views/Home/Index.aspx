@@ -7,12 +7,21 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    推荐榜</div>
+                <div class="panel-heading" style="padding: 5px 14px">
+                    <div class="row">
+                        <div class="col-md-10" style="line-height: 34px;">
+                            推2荐榜</div>
+                        <div class="col-md-2">
+                            <button class="btn btn-default" id="btnPostNew">
+                                我要发表</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <ul class="list-inline">
                         <%For Each article As Articles In ViewData("ArticleData")%>
-                        <li style="width: 100%;padding: 5px 0;"><a href="/Article/Article/<%=article.ID %>" target="_blank">
+                        <li style="width: 100%; padding: 5px 0;"><a href="/Article/Article/<%=article.ID %>"
+                            target="_blank">
                             <%=article.ArticleTitle %></a> <span style="float: right">[<%= Format(article.LastUpdate, "yyyy-MM-dd HH:mm")%>]</span>
                         </li>
                         <%Next%>
@@ -22,13 +31,11 @@
         </div>
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading" data-ng-app="" data-ng-init="d=3;m=4;">
-                    <input data-ng-model="test" />
-                    <div class="col-md-4">
-                        this is {{ d*m}}</div>
-                    <div class="col-md-8">
-                    </div>
-                    <input data-ng-model="test" />
+                <div class="panel-heading">
+                    12
+                </div>
+                <div class="panel-body">
+                    23
                 </div>
             </div>
         </div>

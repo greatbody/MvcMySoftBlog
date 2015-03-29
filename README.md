@@ -6,5 +6,5 @@
 ```
 ##In Office
 ```xml
-<add name="BlogConnectionString" connectionString="Data Source=WH-SUNR01\SUNSOFT_OPEN;Initial Catalog=Blog;User ID=sa;Password=wintel" providerName="System.Data.SqlClient" />
+<add name="BlogConnectionString1" connectionString="Data Source=WH-SUNR01\SUNSOFT_OPEN;Initial Catalog=Blog;User ID=sa;Password=wintel" providerName="System.Data.SqlClient" />
 ```

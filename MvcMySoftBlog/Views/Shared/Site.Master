@@ -11,6 +11,7 @@
     <script src="../../Scripts/jquery-1.11.2.js" type="text/javascript"></script>
     <script src="../../Scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <link href="../../Scripts/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Scripts/home.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="HeaderReserve" runat="server" />
     <style>
         ul.nav-tabsn li.active a, ul.nav-tabs li.active a:hover

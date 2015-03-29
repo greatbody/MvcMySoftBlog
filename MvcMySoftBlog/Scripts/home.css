@@ -1,0 +1,11 @@
+﻿body
+{
+}
+a
+{
+    padding: 5px;
+    border-radius: 10%;
+}
+ul,ol {
+    margin-bottom: 0
+}

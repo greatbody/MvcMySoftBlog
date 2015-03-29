@@ -1,0 +1,79 @@
+{
+  "name": "myblog",
+  "description": "Generate project scaffolding from a template.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/gruntjs/grunt-init",
+  "author": "Grunt Team (http://gruntjs.com/)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gruntjs/grunt-init.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gruntjs/grunt-init/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/gruntjs/grunt-init/blob/master/LICENSE-MIT"
+    }
+  ],
+  "preferGlobal": true,
+  "bin": {
+    "grunt-init": "bin/grunt-init"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "prompt": "~0.1.12",
+    "semver": "~1.0.14",
+    "hooker": "~0.2.3",
+    "colors": "~0.6.0-1",
+    "grunt": "~0.4.0",
+    "lodash": "~2.4.1",
+    "async": "~0.2.10"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.5.3",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-nodeunit": "~0.3.0",
+    "grunt-contrib-watch": "^0.6.1",
+	"grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "load-grunt-tasks": "~0.3.0"
+  },
+  "keywords": [
+    "grunt",
+    "template",
+    "scaffold",
+    "generate",
+    "project"
+  ],
+  "contributors": [
+    "\"Cowboy\" Ben Alman (http://benalman.com)"
+  ],
+  "dist": {
+    "shasum": "0062d318401cfc703db394aa9f8b9e7770809984",
+    "tarball": "http://registry.npmjs.org/grunt-init/-/grunt-init-0.3.2.tgz"
+  },
+  "_from": "grunt-init@",
+  "_npmVersion": "1.4.3",
+  "_npmUser": {
+    "name": "vladikoff",
+    "email": "vlad@vladikoff.com"
+  },
+  "maintainers": [
+    "cowboy <cowboy@rj3.net>",
+    "tkellen <tyler@sleekcode.net>",
+    "shama <kyle@dontkry.com>",
+    "vladikoff <vlad@vladikoff.com>"
+  ],
+  "directories": {},
+  "_shasum": "0062d318401cfc703db394aa9f8b9e7770809984",
+  "_resolved": "https://registry.npmjs.org/grunt-init/-/grunt-init-0.3.2.tgz",
+  "main": "Gruntfile.js",
+  "license": "MIT"
+}

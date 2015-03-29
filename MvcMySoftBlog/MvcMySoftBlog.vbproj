@@ -456,6 +456,7 @@
     <Content Include="Scripts\bootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\js\npm.js" />
     <Content Include="Scripts\datepicker.css" />
+    <Content Include="Scripts\home.css" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Scripts\Page\Create.js" />
     <Content Include="Scripts\Page\Index.js" />
