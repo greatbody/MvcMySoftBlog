@@ -90,16 +90,16 @@
         //,indentValue:'2em'
 
         //,initialFrameWidth:1000  //初始化编辑器宽度,默认1000
-        ,initialFrameHeight:"100%"  //初始化编辑器高度,默认320
+        ,initialFrameHeight:"320"  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
         //启用自动保存
-        //,enableAutoSave: true
+        ,enableAutoSave: true
         //自动保存间隔时间， 单位ms
-        //,saveInterval: 500
+        ,saveInterval: 2000
 
         //,fullscreen : false //是否开启初始化时即全屏，默认关闭
 
@@ -289,7 +289,7 @@
         //是否保持toolbar的位置不动,默认true
         //,autoFloatEnabled:true
         //浮动时工具栏距离浏览器顶部的高度，用于某些具有固定头部的页面
-        //,topOffset:30
+        ,topOffset:40
         //编辑器底部距离工具栏高度(如果参数大于等于编辑器高度，则设置无效)
         //,toolbarTopOffset:400
 

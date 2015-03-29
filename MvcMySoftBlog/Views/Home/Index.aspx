@@ -9,11 +9,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px 14px">
                     <div class="row">
-                        <div class="col-md-10" style="line-height: 34px;">
-                            推2荐榜</div>
-                        <div class="col-md-2">
-                            <button class="btn btn-default" id="btnPostNew">
-                                我要发表</button>
+                        <div class="col-md-9" style="line-height: 34px;">
+                            推荐榜</div>
+                        <div class="col-md-3">
+                            <a class="btn btn-default" id="btnPostNew" href="/Article/Create" target="_blank" style="float: right">
+                                我要发表</a>
                         </div>
                     </div>
                 </div>

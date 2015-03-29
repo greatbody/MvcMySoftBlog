@@ -36,14 +36,26 @@
 
         '
         ' POST: /Article/Create
-
+        <ValidateInput(False)> _
         <HttpPost()> _
-        Function Create(ByVal collection As FormCollection) As ActionResult
+        Function Create(ByVal title As String, ByVal content As String) As ActionResult
             Try
                 ' TODO: Add insert logic here
-                Return RedirectToAction("Index")
-            Catch
-                Return View()
+                Using db As New BlogDbDataContext
+                    Dim newArticle As New Articles
+                    newArticle.ArticleTitle = title
+                    newArticle.ArticleContent = content
+                    newArticle.CreatedOn = Now
+                    newArticle.IsCaoGao = False
+                    newArticle.LastUpdate = Now
+                    newArticle.UserID = GlobalBase.GetUserID()
+                    db.Articles.InsertOnSubmit(newArticle)
+
+                    db.SubmitChanges()
+                End Using
+                Return Json(New With {.Result = True})
+            Catch ex As Exception
+                Return Json(New With {.Result = False})
             End Try
         End Function
 

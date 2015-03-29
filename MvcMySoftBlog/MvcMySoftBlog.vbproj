@@ -104,9 +104,13 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalBase.vb" />
     <Compile Include="Models\BlogDb.designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>BlogDb.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BlogDb.vb">
       <DependentUpon>BlogDb.dbml</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -155,6 +159,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="package.json" />
     <None Include="Scripts\bootstrap\css\bootstrap-theme.css.map" />
     <None Include="Scripts\bootstrap\css\bootstrap.css.map" />
     <None Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -445,8 +450,10 @@
     <Content Include="Editor\ueditor.parse.js" />
     <Content Include="Editor\ueditor.parse.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Gruntfile.js" />
     <Content Include="Models\DbBlog.edmx.sql" />
     <Content Include="Scripts\angularjs\angular.js" />
+    <Content Include="Scripts\ArticleBusiness.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.css" />
     <Content Include="Scripts\bootstrap\css\bootstrap-theme.min.css" />
@@ -467,7 +474,9 @@
     <Content Include="Views\Article\Index.aspx" />
     <Content Include="Views\Home\JsonTest.aspx" />
     <Content Include="Views\Article\NoArticleFound.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -496,6 +505,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="test\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

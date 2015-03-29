@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-    Create
+    创建日志
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
@@ -17,33 +17,24 @@
     </div>
     <div class="row">
         <div class="col-lg-12 form-group">
-            <button class="btn btn-default">发表</button>
+            <button class="btn btn-default" style="float: right; padding: 5px 15px; margin-left: 8px"
+                id="btnSubmit">
+                发布</button>
+            <button class="btn btn-default" style="float: right; padding: 5px 15px" id="btnPreview">
+                预览</button>
         </div>
     </div>
     <!-- 配置文件 -->
     <script type="text/javascript" src="/Editor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="/Editor/ueditor.all.js"></script>
-    <!-- 实例化编辑器 -->
+    <script src="/Scripts/ArticleBusiness.js" type="text/javascript"></script>
     <script src="/Scripts/Page/Create.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var oUE = new UE.ui.Editor({ innerHeight: "600px", innerWidth: "90%" });
-        oUE.render("container");
-        Timer.add(200, function () {
-            var oIframe = $("#edui1_iframeholder");
-            var oContainer = $("#edui1");
-            if (oIframe.length > 0 && oContainer.length>0) {
-                oIframe.css("height", "500px");
-                oContainer.addClass("myform-control");
-                Timer.CloseTimer("update");
-            }
-            console.log(oIframe.length);
-        }, "update");
-    </script>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeaderReserve" runat="server">
     <style type="text/css">
-        .myform-control {
+        .myform-control
+        {
             display: block;
             width: 100%;
             height: 100%;

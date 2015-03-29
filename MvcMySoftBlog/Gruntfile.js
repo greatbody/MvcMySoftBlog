@@ -14,17 +14,17 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             client: {
-                files: ['Scripts/*/*.js', 'Views/**/*aspx'],
+                files: ['**/*js','**/*aspx'],
                 options: {
                     livereload: true
                 }
             }
         }
     });
-
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-watch');
-
+    //load auto test package
+    grunt.loadNpmTasks('grunt-contrib-qunit');
     // By default, lint and run all tests.
     grunt.registerTask('default', ['watch']);
 

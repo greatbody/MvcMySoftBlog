@@ -37,17 +37,17 @@ Partial Public Class BlogDbDataContext
     End Sub
   Partial Private Sub DeleteUsers(instance As Users)
     End Sub
-  Partial Private Sub InsertArticles(instance As Articles)
-    End Sub
-  Partial Private Sub UpdateArticles(instance As Articles)
-    End Sub
-  Partial Private Sub DeleteArticles(instance As Articles)
-    End Sub
   Partial Private Sub InsertArticleHistorys(instance As ArticleHistorys)
     End Sub
   Partial Private Sub UpdateArticleHistorys(instance As ArticleHistorys)
     End Sub
   Partial Private Sub DeleteArticleHistorys(instance As ArticleHistorys)
+    End Sub
+  Partial Private Sub InsertArticles(instance As Articles)
+    End Sub
+  Partial Private Sub UpdateArticles(instance As Articles)
+    End Sub
+  Partial Private Sub DeleteArticles(instance As Articles)
     End Sub
   #End Region
 	
@@ -82,15 +82,15 @@ Partial Public Class BlogDbDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property Articles() As System.Data.Linq.Table(Of Articles)
-		Get
-			Return Me.GetTable(Of Articles)
-		End Get
-	End Property
-	
 	Public ReadOnly Property ArticleHistorys() As System.Data.Linq.Table(Of ArticleHistorys)
 		Get
 			Return Me.GetTable(Of ArticleHistorys)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Articles() As System.Data.Linq.Table(Of Articles)
+		Get
+			Return Me.GetTable(Of Articles)
 		End Get
 	End Property
 End Class
@@ -118,10 +118,6 @@ Partial Public Class Users
 	Private _IsLocked As System.Nullable(Of Byte)
 	
 	Private _IsEnabled As System.Nullable(Of Byte)
-	
-	Private _Articles As EntitySet(Of Articles)
-	
-	Private _ArticleHistorys As EntitySet(Of ArticleHistorys)
 	
     #Region "可扩展性方法定义"
     Partial Private Sub OnLoaded()
@@ -170,8 +166,6 @@ Partial Public Class Users
 	
 	Public Sub New()
 		MyBase.New
-		Me._Articles = New EntitySet(Of Articles)(AddressOf Me.attach_Articles, AddressOf Me.detach_Articles)
-		Me._ArticleHistorys = New EntitySet(Of ArticleHistorys)(AddressOf Me.attach_ArticleHistorys, AddressOf Me.detach_ArticleHistorys)
 		OnCreated
 	End Sub
 	
@@ -320,23 +314,176 @@ Partial Public Class Users
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Users_Articles", Storage:="_Articles", ThisKey:="ID", OtherKey:="UserID")>  _
-	Public Property Articles() As EntitySet(Of Articles)
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ArticleHistorys")>  _
+Partial Public Class ArticleHistorys
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ID As Integer
+	
+	Private _ArticleID As Integer
+	
+	Private _UserID As System.Nullable(Of Integer)
+	
+	Private _UpdateDate As System.Nullable(Of Date)
+	
+	Private _ArticleTile As String
+	
+	Private _ArticleContent As String
+	
+    #Region "可扩展性方法定义"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnIDChanged()
+    End Sub
+    Partial Private Sub OnArticleIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnArticleIDChanged()
+    End Sub
+    Partial Private Sub OnUserIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnUserIDChanged()
+    End Sub
+    Partial Private Sub OnUpdateDateChanging(value As System.Nullable(Of Date))
+    End Sub
+    Partial Private Sub OnUpdateDateChanged()
+    End Sub
+    Partial Private Sub OnArticleTileChanging(value As String)
+    End Sub
+    Partial Private Sub OnArticleTileChanged()
+    End Sub
+    Partial Private Sub OnArticleContentChanging(value As String)
+    End Sub
+    Partial Private Sub OnArticleContentChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property ID() As Integer
 		Get
-			Return Me._Articles
+			Return Me._ID
 		End Get
 		Set
-			Me._Articles.Assign(value)
+			If ((Me._ID = value)  _
+						= false) Then
+				Me.OnIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ID = value
+				Me.SendPropertyChanged("ID")
+				Me.OnIDChanged
+			End If
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Users_ArticleHistorys", Storage:="_ArticleHistorys", ThisKey:="ID", OtherKey:="UserID")>  _
-	Public Property ArticleHistorys() As EntitySet(Of ArticleHistorys)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArticleID", DbType:="Int NOT NULL")>  _
+	Public Property ArticleID() As Integer
 		Get
-			Return Me._ArticleHistorys
+			Return Me._ArticleID
 		End Get
 		Set
-			Me._ArticleHistorys.Assign(value)
+			If ((Me._ArticleID = value)  _
+						= false) Then
+				Me.OnArticleIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ArticleID = value
+				Me.SendPropertyChanged("ArticleID")
+				Me.OnArticleIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="Int")>  _
+	Public Property UserID() As System.Nullable(Of Integer)
+		Get
+			Return Me._UserID
+		End Get
+		Set
+			If (Me._UserID.Equals(value) = false) Then
+				Me.OnUserIDChanging(value)
+				Me.SendPropertyChanging
+				Me._UserID = value
+				Me.SendPropertyChanged("UserID")
+				Me.OnUserIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UpdateDate", DbType:="DateTime")>  _
+	Public Property UpdateDate() As System.Nullable(Of Date)
+		Get
+			Return Me._UpdateDate
+		End Get
+		Set
+			If (Me._UpdateDate.Equals(value) = false) Then
+				Me.OnUpdateDateChanging(value)
+				Me.SendPropertyChanging
+				Me._UpdateDate = value
+				Me.SendPropertyChanged("UpdateDate")
+				Me.OnUpdateDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArticleTile", DbType:="NVarChar(500)")>  _
+	Public Property ArticleTile() As String
+		Get
+			Return Me._ArticleTile
+		End Get
+		Set
+			If (String.Equals(Me._ArticleTile, value) = false) Then
+				Me.OnArticleTileChanging(value)
+				Me.SendPropertyChanging
+				Me._ArticleTile = value
+				Me.SendPropertyChanged("ArticleTile")
+				Me.OnArticleTileChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArticleContent", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property ArticleContent() As String
+		Get
+			Return Me._ArticleContent
+		End Get
+		Set
+			If (String.Equals(Me._ArticleContent, value) = false) Then
+				Me.OnArticleContentChanging(value)
+				Me.SendPropertyChanging
+				Me._ArticleContent = value
+				Me.SendPropertyChanged("ArticleContent")
+				Me.OnArticleContentChanged
+			End If
 		End Set
 	End Property
 	
@@ -356,26 +503,6 @@ Partial Public Class Users
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
-	End Sub
-	
-	Private Sub attach_Articles(ByVal entity As Articles)
-		Me.SendPropertyChanging
-		entity.Users = Me
-	End Sub
-	
-	Private Sub detach_Articles(ByVal entity As Articles)
-		Me.SendPropertyChanging
-		entity.Users = Nothing
-	End Sub
-	
-	Private Sub attach_ArticleHistorys(ByVal entity As ArticleHistorys)
-		Me.SendPropertyChanging
-		entity.Users = Me
-	End Sub
-	
-	Private Sub detach_ArticleHistorys(ByVal entity As ArticleHistorys)
-		Me.SendPropertyChanging
-		entity.Users = Nothing
 	End Sub
 End Class
 
@@ -397,9 +524,7 @@ Partial Public Class Articles
 	
 	Private _UserID As Integer
 	
-	Private _ArticleHistorys As EntitySet(Of ArticleHistorys)
-	
-	Private _Users As EntityRef(Of Users)
+	Private _IsCaoGao As System.Nullable(Of Boolean)
 	
     #Region "可扩展性方法定义"
     Partial Private Sub OnLoaded()
@@ -432,16 +557,18 @@ Partial Public Class Articles
     End Sub
     Partial Private Sub OnUserIDChanged()
     End Sub
+    Partial Private Sub OnIsCaoGaoChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsCaoGaoChanged()
+    End Sub
     #End Region
 	
 	Public Sub New()
 		MyBase.New
-		Me._ArticleHistorys = New EntitySet(Of ArticleHistorys)(AddressOf Me.attach_ArticleHistorys, AddressOf Me.detach_ArticleHistorys)
-		Me._Users = CType(Nothing, EntityRef(Of Users))
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property ID() As Integer
 		Get
 			Return Me._ID
@@ -530,9 +657,6 @@ Partial Public Class Articles
 		Set
 			If ((Me._UserID = value)  _
 						= false) Then
-				If Me._Users.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
 				Me.OnUserIDChanging(value)
 				Me.SendPropertyChanging
 				Me._UserID = value
@@ -542,291 +666,18 @@ Partial Public Class Articles
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Articles_ArticleHistorys", Storage:="_ArticleHistorys", ThisKey:="ID", OtherKey:="ArticleID")>  _
-	Public Property ArticleHistorys() As EntitySet(Of ArticleHistorys)
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IsCaoGao", DbType:="Bit")>  _
+	Public Property IsCaoGao() As System.Nullable(Of Boolean)
 		Get
-			Return Me._ArticleHistorys
+			Return Me._IsCaoGao
 		End Get
 		Set
-			Me._ArticleHistorys.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Users_Articles", Storage:="_Users", ThisKey:="UserID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property Users() As Users
-		Get
-			Return Me._Users.Entity
-		End Get
-		Set
-			Dim previousValue As Users = Me._Users.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Users.HasLoadedOrAssignedValue = false)) Then
+			If (Me._IsCaoGao.Equals(value) = false) Then
+				Me.OnIsCaoGaoChanging(value)
 				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Users.Entity = Nothing
-					previousValue.Articles.Remove(Me)
-				End If
-				Me._Users.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.Articles.Add(Me)
-					Me._UserID = value.ID
-				Else
-					Me._UserID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("Users")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_ArticleHistorys(ByVal entity As ArticleHistorys)
-		Me.SendPropertyChanging
-		entity.Articles = Me
-	End Sub
-	
-	Private Sub detach_ArticleHistorys(ByVal entity As ArticleHistorys)
-		Me.SendPropertyChanging
-		entity.Articles = Nothing
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ArticleHistorys")>  _
-Partial Public Class ArticleHistorys
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ID As Integer
-	
-	Private _ArticleID As Integer
-	
-	Private _UserID As System.Nullable(Of Integer)
-	
-	Private _UpdateDate As System.Nullable(Of Date)
-	
-	Private _ArticleTile As String
-	
-	Private _ArticleContent As String
-	
-	Private _Articles As EntityRef(Of Articles)
-	
-	Private _Users As EntityRef(Of Users)
-	
-    #Region "可扩展性方法定义"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnIDChanged()
-    End Sub
-    Partial Private Sub OnArticleIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnArticleIDChanged()
-    End Sub
-    Partial Private Sub OnUserIDChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnUserIDChanged()
-    End Sub
-    Partial Private Sub OnUpdateDateChanging(value As System.Nullable(Of Date))
-    End Sub
-    Partial Private Sub OnUpdateDateChanged()
-    End Sub
-    Partial Private Sub OnArticleTileChanging(value As String)
-    End Sub
-    Partial Private Sub OnArticleTileChanged()
-    End Sub
-    Partial Private Sub OnArticleContentChanging(value As String)
-    End Sub
-    Partial Private Sub OnArticleContentChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._Articles = CType(Nothing, EntityRef(Of Articles))
-		Me._Users = CType(Nothing, EntityRef(Of Users))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
-	Public Property ID() As Integer
-		Get
-			Return Me._ID
-		End Get
-		Set
-			If ((Me._ID = value)  _
-						= false) Then
-				Me.OnIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ID = value
-				Me.SendPropertyChanged("ID")
-				Me.OnIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArticleID", DbType:="Int NOT NULL")>  _
-	Public Property ArticleID() As Integer
-		Get
-			Return Me._ArticleID
-		End Get
-		Set
-			If ((Me._ArticleID = value)  _
-						= false) Then
-				If Me._Articles.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnArticleIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ArticleID = value
-				Me.SendPropertyChanged("ArticleID")
-				Me.OnArticleIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="Int")>  _
-	Public Property UserID() As System.Nullable(Of Integer)
-		Get
-			Return Me._UserID
-		End Get
-		Set
-			If (Me._UserID.Equals(value) = false) Then
-				If Me._Users.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnUserIDChanging(value)
-				Me.SendPropertyChanging
-				Me._UserID = value
-				Me.SendPropertyChanged("UserID")
-				Me.OnUserIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UpdateDate", DbType:="DateTime")>  _
-	Public Property UpdateDate() As System.Nullable(Of Date)
-		Get
-			Return Me._UpdateDate
-		End Get
-		Set
-			If (Me._UpdateDate.Equals(value) = false) Then
-				Me.OnUpdateDateChanging(value)
-				Me.SendPropertyChanging
-				Me._UpdateDate = value
-				Me.SendPropertyChanged("UpdateDate")
-				Me.OnUpdateDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArticleTile", DbType:="NVarChar(500)")>  _
-	Public Property ArticleTile() As String
-		Get
-			Return Me._ArticleTile
-		End Get
-		Set
-			If (String.Equals(Me._ArticleTile, value) = false) Then
-				Me.OnArticleTileChanging(value)
-				Me.SendPropertyChanging
-				Me._ArticleTile = value
-				Me.SendPropertyChanged("ArticleTile")
-				Me.OnArticleTileChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ArticleContent", DbType:="Text", UpdateCheck:=UpdateCheck.Never)>  _
-	Public Property ArticleContent() As String
-		Get
-			Return Me._ArticleContent
-		End Get
-		Set
-			If (String.Equals(Me._ArticleContent, value) = false) Then
-				Me.OnArticleContentChanging(value)
-				Me.SendPropertyChanging
-				Me._ArticleContent = value
-				Me.SendPropertyChanged("ArticleContent")
-				Me.OnArticleContentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Articles_ArticleHistorys", Storage:="_Articles", ThisKey:="ArticleID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property Articles() As Articles
-		Get
-			Return Me._Articles.Entity
-		End Get
-		Set
-			Dim previousValue As Articles = Me._Articles.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Articles.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Articles.Entity = Nothing
-					previousValue.ArticleHistorys.Remove(Me)
-				End If
-				Me._Articles.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.ArticleHistorys.Add(Me)
-					Me._ArticleID = value.ID
-				Else
-					Me._ArticleID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("Articles")
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Users_ArticleHistorys", Storage:="_Users", ThisKey:="UserID", OtherKey:="ID", IsForeignKey:=true)>  _
-	Public Property Users() As Users
-		Get
-			Return Me._Users.Entity
-		End Get
-		Set
-			Dim previousValue As Users = Me._Users.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Users.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Users.Entity = Nothing
-					previousValue.ArticleHistorys.Remove(Me)
-				End If
-				Me._Users.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.ArticleHistorys.Add(Me)
-					Me._UserID = value.ID
-				Else
-					Me._UserID = CType(Nothing, Nullable(Of Integer))
-				End If
-				Me.SendPropertyChanged("Users")
+				Me._IsCaoGao = value
+				Me.SendPropertyChanged("IsCaoGao")
+				Me.OnIsCaoGaoChanged
 			End If
 		End Set
 	End Property

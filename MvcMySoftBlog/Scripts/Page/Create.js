@@ -149,3 +149,45 @@
         return null;
     }
 };
+var oUE;
+$(document).ready(function () {
+    oUE = new UE.ui.Editor({ innerHeight: "600px", innerWidth: "100%" });
+    oUE.render("container");
+    Timer.add(200, function () {
+        var oContainer = $("#edui1");
+        if (oContainer.length > 0) {
+            oContainer.addClass("myform-control");
+            Timer.CloseTimer("update");
+        }
+    }, "update");
+    Timer.add(500, function () {
+        var oIframe = $("#edui1_iframeholder");
+        if (oIframe.length > 0) {
+            if (oIframe.css("height") == "155px") {
+                oIframe.css("height", "300px");
+            }
+        }
+    }, "heightsetter");
+    $("#btnPreview").click(function () {
+        btnControl.preView();
+    });
+    $("#btnSubmit").click(function () {
+        btnControl.postNew();
+    });
+});
+
+
+var btnControl = {
+    preView: function () {
+        oUE.execCommand("preview");
+    },
+    postNew:function() {
+        //提交新日志
+        var sContent = oUE.getContent();
+        var sTitle = $("#ArticleTitle").val();
+        Article.Save(sTitle, sContent);
+    },
+    postCaoGao:function() {
+        //提交草稿
+    }
+};

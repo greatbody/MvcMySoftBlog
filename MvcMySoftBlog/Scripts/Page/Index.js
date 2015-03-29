@@ -15,7 +15,7 @@ $(document).ready(function () {
         console.log("out:" + $(this).className);
     });
     $("#btnPostNew").click(function () {
-        alert(44);
+        
     });
 });
 
