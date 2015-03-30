@@ -35,6 +35,12 @@
             <%If ViewData("Page") = "article" Then%>
             <li <%= ViewData("Article") %>><a href="javascript:void(0);">查看文章</a></li>
             <%End If%>
+            <%If ViewData("Page") = "Edit" Then%>
+            <li <%= ViewData("Edit") %>><a href="javascript:void(0);">编辑文章</a></li>
+            <%End If%>
+            <%If ViewData("Page") = "NoArticleFound" Then%>
+            <li <%= ViewData("NoArticleFound") %>><a href="javascript:void(0);">文章丢了</a></li>
+            <%End If%>
             <%If ViewData("Role") = "user" Then%>
             <li <%= ViewData("MyInfo") %>>
                 <%= Html.ActionLink("我的信息", "MyInfo", "Home")%></li>

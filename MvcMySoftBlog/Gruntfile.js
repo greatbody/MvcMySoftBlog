@@ -24,7 +24,7 @@ module.exports = function (grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-watch');
     //load auto test package
-    grunt.loadNpmTasks('grunt-contrib-qunit');
+    //grunt.loadNpmTasks('grunt-contrib-qunit');
     // By default, lint and run all tests.
     grunt.registerTask('default', ['watch']);
 

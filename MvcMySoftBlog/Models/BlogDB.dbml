@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Blog" Class="BlogDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=SUNSOFT-PC\SUNSOFT;Initial Catalog=Blog;Persist Security Info=True;User ID=team" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BlogConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=WH-SUNR01\SUNSOFT_OPEN;Initial Catalog=Blog;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BlogConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Users" Member="Users">
     <Type Name="Users">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -26,7 +26,7 @@
   <Table Name="dbo.Articles" Member="Articles">
     <Type Name="Articles">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ArticleTitle" Type="System.String" DbType="NChar(500)" CanBeNull="true" />
+      <Column Name="ArticleTitle" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="ArticleContent" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LastUpdate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />

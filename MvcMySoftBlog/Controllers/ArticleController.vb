@@ -41,18 +41,50 @@
         Function Create(ByVal formCollection As FormCollection) As ActionResult
             Try
                 ' TODO: Add insert logic here
-                Dim newArticle As New Articles
-                Using db As New BlogDbDataContext
-                    newArticle.ArticleTitle = formCollection("title")
-                    newArticle.ArticleContent = formCollection("content")
-                    newArticle.CreatedOn = Now
-                    newArticle.IsCaoGao = False
-                    newArticle.LastUpdate = Now
-                    newArticle.UserID = GlobalBase.GetUserID()
-                    db.Articles.InsertOnSubmit(newArticle)
-                    db.SubmitChanges()
-                End Using
-                Return Json(New With {.redirect = "/Article/Article/" & newArticle.ID.ToString()})
+                Dim isCaoGao As Integer = formCollection("IsCaoGao")
+                If isCaoGao = 1 Then
+                    '如果是草稿，看看是不是新增
+                    If formCollection("id") = -1 Then
+                        '第一次保存草稿
+                        Dim newArticle As New Articles
+                        Using db As New BlogDbDataContext
+                            newArticle.ArticleTitle = formCollection("title")
+                            newArticle.ArticleContent = formCollection("content")
+                            newArticle.CreatedOn = Now
+                            newArticle.IsCaoGao = True
+                            newArticle.LastUpdate = Now
+                            newArticle.UserID = GlobalBase.GetUserID()
+                            db.Articles.InsertOnSubmit(newArticle)
+                            db.SubmitChanges()
+                        End Using
+                        Return Json(New With {.redirect = "/Article/Article/" & newArticle.ID.ToString()})
+                    End If
+                Else
+                    '纯新增
+                    Dim newArticle As New Articles
+                    Using db As New BlogDbDataContext
+                        newArticle.ArticleTitle = formCollection("title")
+                        newArticle.ArticleContent = formCollection("content")
+                        newArticle.CreatedOn = Now
+                        newArticle.IsCaoGao = False
+                        newArticle.LastUpdate = Now
+                        newArticle.UserID = GlobalBase.GetUserID()
+                        db.Articles.InsertOnSubmit(newArticle)
+                        db.SubmitChanges()
+                        '插入历史记录
+                        Dim newArticleHis As New ArticleHistorys
+                        With newArticleHis
+                            .ArticleTile = newArticle.ArticleTitle
+                            .ArticleContent = newArticle.ArticleContent
+                            .UpdateDate = Now
+                            .ArticleID = newArticle.ID
+                            .UserID = newArticle.UserID
+                        End With
+                        db.ArticleHistorys.InsertOnSubmit(newArticleHis)
+                        db.SubmitChanges()
+                    End Using
+                End If
+
             Catch ex As Exception
                 Return Json(New With {.redirect = "/Article/ErrorPage"})
             End Try
@@ -62,20 +94,40 @@
         ' GET: /Article/Edit/5
 
         Function Edit(ByVal id As Integer) As ActionResult
+            Dim db As New BlogDbDataContext
+            Dim articleses As IQueryable(Of Articles) = From wenzhang In db.Articles Where wenzhang.ID = id
+
+            If articleses Is Nothing Then
+                ViewData("Page") = "NoArticleFound"
+                SetCurrent("NoArticleFound")
+                Return View("NoArticleFound")
+            Else
+                SetCurrent("Edit")
+                ViewData("Page") = "Edit"
+                ViewData("ArticleContent") = articleses
+                Return View("Edit")
+            End If
             Return View()
         End Function
 
         '
         ' POST: /Article/Edit/5
-
+        <ValidateInput(False)> _
         <HttpPost()> _
         Function Edit(ByVal id As Integer, ByVal collection As FormCollection) As ActionResult
             Try
                 ' TODO: Add update logic here
-
-                Return RedirectToAction("Index")
+                '提交的更新数据
+                Dim db As New BlogDbDataContext
+                Dim tmpArticle = From arts In db.Articles Where arts.ID = id
+                For Each articles As Articles In tmpArticle
+                    articles.ArticleTitle = collection("title")
+                    articles.ArticleContent = collection("content")
+                Next
+                db.SubmitChanges()
+                Return Json(New With {.result = True, .redirect = "/Article/Article/" & id.ToString()})
             Catch
-                Return View("ErrorPage")
+                Return Json(New With {.result = False})
             End Try
         End Function
 

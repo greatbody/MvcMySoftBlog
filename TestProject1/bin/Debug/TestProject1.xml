@@ -1,0 +1,85 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+TestProject1
+</name>
+</assembly>
+<members>
+<member name="P:TestProject1.CodedUITest2.TestContext">
+	<summary>
+获取或设置测试上下文，该上下文提供
+有关当前测试运行及其功能的信息。
+</summary>
+</member><member name="P:TestProject1.CodedUITest1.TestContext">
+	<summary>
+获取或设置测试上下文，该上下文提供
+有关当前测试运行及其功能的信息。
+</summary>
+</member><member name="M:TestProject1.TestProject1.UIMap.RecordedMethod1">
+	<summary>
+RecordedMethod1 - 使用“RecordedMethod1Params”将参数传递到此方法中。
+</summary>
+</member><member name="M:TestProject1.TestProject1.UIMap.RecordedMethod2">
+	<summary>
+RecordedMethod2
+</summary>
+</member><member name="M:TestProject1.TestProject1.UIMap.RecordedMethod3">
+	<summary>
+RecordedMethod3
+</summary>
+</member><member name="M:TestProject1.TestProject1.UIMap.RecordedMethod4">
+	<summary>
+RecordedMethod4 - 使用“RecordedMethod4Params”将参数传递到此方法中。
+</summary>
+</member><member name="M:TestProject1.TestProject1.UIMap.RecordedMethod5">
+	<summary>
+RecordedMethod5 - 使用“RecordedMethod5Params”将参数传递到此方法中。
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod1Params.UI创建日志猎豹安全浏览器DocumentSendKeys">
+	<summary>
+在 “创建日志 - 猎豹安全浏览器” 文档 中键入“test”
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod1Params.UI创建日志猎豹安全浏览器DocumentSendKeys1">
+	<summary>
+在 “创建日志 - 猎豹安全浏览器” 文档 中键入“right”
+</summary>
+</member><member name="T:TestProject1.TestProject1.RecordedMethod1Params">
+	<summary>
+要传递到“RecordedMethod1”中的参数
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod4Params.UITxtUserCodeEditText">
+	<summary>
+在 “txtUserCode” 文本框 中键入“admin”
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod4Params.UITxtUserCodeEditSendKeys">
+	<summary>
+在 “txtUserCode” 文本框 中键入“{Enter}”
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod4Params.UITxtPassWordEditSendKeys">
+	<summary>
+在 “txtPassWord” 文本框 中键入“{Enter}”
+</summary>
+</member><member name="T:TestProject1.TestProject1.RecordedMethod4Params">
+	<summary>
+要传递到“RecordedMethod4”中的参数
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod5Params.UITxtUserCodeEditText">
+	<summary>
+在 “txtUserCode” 文本框 中键入“admin”
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod5Params.UITxtUserCodeEditSendKeys">
+	<summary>
+在 “txtUserCode” 文本框 中键入“{Enter}”
+</summary>
+</member><member name="F:TestProject1.TestProject1.RecordedMethod5Params.UITxtPassWordEditSendKeys">
+	<summary>
+在 “txtPassWord” 文本框 中键入“{Enter}”
+</summary>
+</member><member name="T:TestProject1.TestProject1.RecordedMethod5Params">
+	<summary>
+要传递到“RecordedMethod5”中的参数
+</summary>
+</member>
+</members>
+</doc>

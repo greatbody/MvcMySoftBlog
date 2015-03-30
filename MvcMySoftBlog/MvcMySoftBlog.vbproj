@@ -130,7 +130,9 @@
     <None Include="Editor\net\config.json" />
     <Content Include="Editor\net\controller.ashx" />
     <None Include="Editor\net\README.md" />
-    <Content Include="Editor\net\Web.config" />
+    <Content Include="Editor\net\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Editor\third-party\jquery-1.10.2.min.map" />
     <None Include="Editor\third-party\video-js\font\vjs.eot" />
     <None Include="Editor\third-party\video-js\font\vjs.ttf" />
@@ -160,6 +162,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="package.json" />
+    <None Include="README.md" />
     <None Include="Scripts\bootstrap\css\bootstrap-theme.css.map" />
     <None Include="Scripts\bootstrap\css\bootstrap.css.map" />
     <None Include="Scripts\bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -466,6 +469,7 @@
     <Content Include="Scripts\home.css" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Scripts\Page\Create.js" />
+    <Content Include="Scripts\Page\Edit.js" />
     <Content Include="Scripts\Page\Index.js" />
     <Content Include="Views\Article\Article.aspx" />
     <Content Include="Views\Article\Create.aspx" />
