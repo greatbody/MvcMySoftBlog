@@ -7,6 +7,7 @@ Public Class HomeController
     Function Index() As ActionResult
         SetCurrent("Index")
         ViewData("ArticleData") = GetList()
+        ViewData("RecentArticle") = GetRecentList()
         Return View()
     End Function
 
@@ -27,6 +28,13 @@ Public Class HomeController
 #End Region
 #Region "Business"
     Public Function GetList() As IQueryable(Of Articles)
+        Dim articles As IQueryable(Of Articles)
+        Dim db As New BlogDbDataContext
+        articles = From articleCollection In db.Articles Select articleCollection Order By articleCollection.Likes Descending
+        Return articles.Take(5)
+    End Function
+
+    Public Function GetRecentList() As IQueryable(Of Articles)
         Dim articles As IQueryable(Of Articles)
         Dim db As New BlogDbDataContext
         articles = From articleCollection In db.Articles Select articleCollection Order By articleCollection.CreatedOn Descending

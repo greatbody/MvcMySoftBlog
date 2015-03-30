@@ -136,7 +136,11 @@
 
         Function Delete(ByVal id As Integer) As ActionResult
             Try
-                Return RedirectToAction("Index")
+                Dim db As New BlogDbDataContext
+                Dim article As Articles = db.Articles.First(Function(dArticles) dArticles.ID = id)
+                db.Articles.DeleteOnSubmit(article)
+                db.SubmitChanges()
+                Return RedirectToAction("Index", "Home")
             Catch ex As Exception
                 Return View("ErrorPage")
             End Try

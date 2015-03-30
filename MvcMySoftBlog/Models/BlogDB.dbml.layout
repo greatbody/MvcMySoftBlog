@@ -2,22 +2,22 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="BlogDb">
   <DataContextMoniker Name="/BlogDbDataContext" />
   <nestedChildShapes>
-    <classShape Id="fb6d2e20-cbf2-41d4-b514-64adc35a26f7" absoluteBounds="0.5, 0.5, 2, 2.4612756347656251">
+    <classShape Id="fb6d2e20-cbf2-41d4-b514-64adc35a26f7" absoluteBounds="0.5, 0.5, 2, 2.5266442871093751">
       <DataClassMoniker Name="/BlogDbDataContext/Users" />
       <nestedChildShapes>
-        <elementListCompartment Id="16061858-603a-4179-826a-7233101635c6" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.901275634765625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="16061858-603a-4179-826a-7233101635c6" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 1.966644287109375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="229403d3-5721-4c50-bd18-d69844fddd5c" absoluteBounds="2.375, 3.875, 2, 1.9068933105468746">
-      <DataClassMoniker Name="/BlogDbDataContext/ArticleHistorys" />
-      <nestedChildShapes>
-        <elementListCompartment Id="d6f92d42-5035-4549-a084-3b8ec5d81992" absoluteBounds="2.39, 4.335, 1.9700000000000002, 1.346893310546875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="d8010718-1f15-4df9-87cb-f34aa98e0c5c" absoluteBounds="5, 1.25, 2, 2.0916874186197916">
+    <classShape Id="a93d4335-e3d8-4543-9a5e-22b3b4831781" absoluteBounds="3.75, 0.5, 2, 2.7176639811197916">
       <DataClassMoniker Name="/BlogDbDataContext/Articles" />
       <nestedChildShapes>
-        <elementListCompartment Id="8c4b39eb-5971-442f-9784-06dbb3a0ffbb" absoluteBounds="5.015, 1.71, 1.9700000000000002, 1.5316874186197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8c9451f9-338d-44fa-b6d8-b6e03023bc0e" absoluteBounds="3.765, 0.96, 1.9700000000000002, 2.1576639811197915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d2e810d0-9efc-46bb-942e-8b0e723a1ec7" absoluteBounds="1.875, 3.875, 2, 2.3356245930989585">
+      <DataClassMoniker Name="/BlogDbDataContext/ArticleHistorys" />
+      <nestedChildShapes>
+        <elementListCompartment Id="14624c8b-7683-495b-b69d-33ede032bf08" absoluteBounds="1.8900000000000001, 4.335, 1.9700000000000002, 1.7756245930989585" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

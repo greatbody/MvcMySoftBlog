@@ -6,6 +6,14 @@ MvcMySoftBlog
 </name>
 </assembly>
 <members>
-
+<member name="M:MvcMySoftBlog.PublicFunc.PubFunc.GetShortTitle(System.String,System.String)">
+	<summary>
+ 获取短标题
+ </summary>
+	<param name="Title">标题</param>
+	<param name="length">长度</param>
+	<returns></returns>
+	<remarks></remarks>
+</member>
 </members>
 </doc>
