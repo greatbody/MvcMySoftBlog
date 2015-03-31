@@ -42,9 +42,10 @@
             Try
                 ' TODO: Add insert logic here
                 Dim isCaoGao As Integer = formCollection("IsCaoGao")
+                Dim id As Integer = formCollection("id")
                 If isCaoGao = 1 Then
                     '如果是草稿，看看是不是新增
-                    If formCollection("id") = -1 Then
+                    If id = -1 Then
                         '第一次保存草稿
                         Dim newArticle As New Articles
                         Using db As New BlogDbDataContext
@@ -57,7 +58,17 @@
                             db.Articles.InsertOnSubmit(newArticle)
                             db.SubmitChanges()
                         End Using
-                        Return Json(New With {.redirect = "/Article/Article/" & newArticle.ID.ToString()})
+                        Return Json(New With {.result = True})
+                    Else
+                        '不是新增
+                        '则更新草稿
+                        Using db As New BlogDbDataContext
+                            Dim tmpArticle As Articles = db.Articles.First(Function(articles) articles.ID = id)
+                            tmpArticle.ArticleTitle = formCollection("title")
+                            tmpArticle.ArticleContent = formCollection("content")
+                            db.SubmitChanges()
+                        End Using
+                        Return Json(New With {.result = True})
                     End If
                 Else
                     '纯新增
@@ -164,6 +175,43 @@
 
         Function ErrorPage() As ActionResult
             Return View()
+        End Function
+
+        'Ajax业务
+        <HttpPost()> _
+        Function VotePro(ByVal collection As FormCollection) As ActionResult
+            Try
+                If Not collection("id") Is Nothing Then
+                    Dim id As Integer = collection("id")
+                    Using db As New BlogDbDataContext
+                        Dim article As Articles = db.Articles.First(Function(articles) articles.ID = id)
+                        article.Likes += 1
+                        db.SubmitChanges()
+                    End Using
+                    Return Json(New With {.result = True})
+                End If
+                Return Json(New With {.result = False})
+            Catch ex As Exception
+                Return Json(New With {.result = False})
+            End Try
+        End Function
+
+        <HttpPost()> _
+        Function VoteCon(ByVal collection As FormCollection) As ActionResult
+            Try
+                If Not collection("id") Is Nothing Then
+                    Dim id As Integer = collection("id")
+                    Using db As New BlogDbDataContext
+                        Dim article As Articles = db.Articles.First(Function(articles) articles.ID = id)
+                        article.DisLikes += 1
+                        db.SubmitChanges()
+                    End Using
+                    Return Json(New With {.result = True})
+                End If
+                Return Json(New With {.result = False})
+            Catch ex As Exception
+                Return Json(New With {.result = False})
+            End Try
         End Function
 
 #Region "公共函数"

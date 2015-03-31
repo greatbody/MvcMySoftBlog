@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="VB" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage" %>
 
 <%@ Import Namespace="MvcMySoftBlog" %>
-<%@ Import Namespace="MvcMySoftBlog" %>
 <asp:Content ID="indexTitle" ContentPlaceHolderID="TitleContent" runat="server">
     日志大厅</asp:Content>
 <asp:Content ID="indexContent" ContentPlaceHolderID="MainContent" runat="server">
+    <%= ""%>
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">

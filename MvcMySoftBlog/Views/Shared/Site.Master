@@ -13,7 +13,7 @@
     <link href="../../Scripts/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../../Scripts/home.css" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="HeaderReserve" runat="server" />
-    <style>
+    <style type="text/css">
         ul.nav-tabsn li.active a, ul.nav-tabs li.active a:hover
         {
             color: #fff;

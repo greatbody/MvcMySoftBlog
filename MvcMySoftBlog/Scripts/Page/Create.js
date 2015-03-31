@@ -151,6 +151,7 @@
 };
 var oUE;
 $(document).ready(function () {
+    //********
     oUE = new UE.ui.Editor({ innerHeight: "600px", innerWidth: "100%" });
     oUE.render("container");
     Timer.add(200, function () {
@@ -161,14 +162,14 @@ $(document).ready(function () {
             Timer.CloseTimer("update");
         }
     }, "update");
-//    Timer.add(500, function () {
-//        var oIframe = $("#edui1_iframeholder");
-//        if (oIframe.length > 0) {
-//            if (oIframe.css("height") == "155px") {
-//                oIframe.css("height", "300px");
-//            }
-//        }
-//    }, "heightsetter");
+    //    Timer.add(500, function () {
+    //        var oIframe = $("#edui1_iframeholder");
+    //        if (oIframe.length > 0) {
+    //            if (oIframe.css("height") == "155px") {
+    //                oIframe.css("height", "300px");
+    //            }
+    //        }
+    //    }, "heightsetter");
     $("#btnPreview").click(function () {
         btnControl.preView();
     });
@@ -186,13 +187,71 @@ var btnControl = {
     preView: function () {
         oUE.execCommand("preview");
     },
-    postNew:function() {
+    postNew: function () {
         //提交新日志
         var sContent = oUE.getContent();
         var sTitle = $("#ArticleTitle").val();
+        var vf = VarifyFactory.create();
+        vf.regVar(sContent, "日志内容");
+        vf.regVar(sTitle, "日志标题");
+        if (!vf.varify()) {
+            return;
+        }
         Article.Save(sTitle, sContent);
     },
-    postCaoGao:function() {
+    postCaoGao: function () {
         //提交草稿
+    }
+};
+
+//var VarifyEngine = {
+//    VarifyList: [],
+//    varify: function () {
+//        if (this.VarifyList.length > 0) {
+//            var i;
+//            for (i = 0; i < this.VarifyList.length; i++) {
+//                var oItem = this.VarifyList[i];
+//                if (!oItem.data || oItem.data.length == 0) {
+//                    alert(oItem.msg + "不能为空！");
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    },
+//    regVar: function (value, message) {
+//        var oItem = { "data": value, "msg": message };
+//        this.VarifyList.push(oItem);
+//    },
+//    clear: function () {
+//        this.VarifyList.length = 0;
+//    }
+//};
+
+var VarifyFactory = {
+    create: function () {
+        return {
+            VarifyList: [],
+            varify: function () {
+                if (this.VarifyList.length > 0) {
+                    var i;
+                    for (i = 0; i < this.VarifyList.length; i++) {
+                        var oItem = this.VarifyList[i];
+                        if (!oItem.data || oItem.data.length == 0) {
+                            alert(oItem.msg + "不能为空！");
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            },
+            regVar: function (value, message) {
+                var oItem = { "data": value, "msg": message };
+                this.VarifyList.push(oItem);
+            },
+            clear: function () {
+                this.VarifyList.length = 0;
+            }
+        };
     }
 };

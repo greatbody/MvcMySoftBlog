@@ -30,5 +30,23 @@ var Article = {
         }
         $.post("/Article/Create", { "title": title, "content": content, IsCaoGao: 1, "id": id }, function (data) {
         });
+    },
+    Zan: function (id,oRef) {
+        ///<summary>点赞</summary>
+        $.post("/Article/VotePro", { "id": id }, function (data) {
+            if (data.result==true) {
+                var nNum = parseInt($(oRef).find("span").text(), 10);
+                $(oRef).find("span").text(nNum + 1);
+            }
+        });
+    },
+    Cai: function (id,oRef) {
+        ///<summary>踩</summary>
+        $.post("/Article/VoteCon", { "id": id }, function (data) {
+            if (data.result == true) {
+                var nNum = parseInt($(oRef).find("span").text(), 10);
+                $(oRef).find("span").text(nNum + 1);
+            }
+        });
     }
 };
