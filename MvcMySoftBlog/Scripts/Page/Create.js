@@ -157,6 +157,7 @@ $(document).ready(function () {
         var oContainer = $("#edui1");
         if (oContainer.length > 0) {
             oContainer.addClass("myform-control");
+            oContainer.removeAttr("style");
             Timer.CloseTimer("update");
         }
     }, "update");
