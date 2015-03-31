@@ -161,19 +161,23 @@ $(document).ready(function () {
             Timer.CloseTimer("update");
         }
     }, "update");
-    Timer.add(500, function () {
-        var oIframe = $("#edui1_iframeholder");
-        if (oIframe.length > 0) {
-            if (oIframe.css("height") == "155px") {
-                oIframe.css("height", "300px");
-            }
-        }
-    }, "heightsetter");
+//    Timer.add(500, function () {
+//        var oIframe = $("#edui1_iframeholder");
+//        if (oIframe.length > 0) {
+//            if (oIframe.css("height") == "155px") {
+//                oIframe.css("height", "300px");
+//            }
+//        }
+//    }, "heightsetter");
     $("#btnPreview").click(function () {
         btnControl.preView();
     });
     $("#btnSubmit").click(function () {
         btnControl.postNew();
+    });
+    //绑定日期输入
+    $('#ArticleDate').datepicker({
+        format: 'yyyy-mm-dd'
     });
 });
 

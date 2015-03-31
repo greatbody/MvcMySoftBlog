@@ -83,6 +83,7 @@
                         db.ArticleHistorys.InsertOnSubmit(newArticleHis)
                         db.SubmitChanges()
                     End Using
+                    Return Json(New With {.redirect = "/Article/Article/" & newArticle.ID.ToString()})
                 End If
 
             Catch ex As Exception
