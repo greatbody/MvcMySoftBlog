@@ -54,6 +54,8 @@
                             newArticle.CreatedOn = Now
                             newArticle.IsCaoGao = True
                             newArticle.LastUpdate = Now
+                            newArticle.Likes = 0
+                            newArticle.DisLikes = 0
                             newArticle.UserID = GlobalBase.GetUserID()
                             db.Articles.InsertOnSubmit(newArticle)
                             db.SubmitChanges()
@@ -79,6 +81,8 @@
                         newArticle.CreatedOn = Now
                         newArticle.IsCaoGao = False
                         newArticle.LastUpdate = Now
+                        newArticle.Likes = 0
+                        newArticle.DisLikes = 0
                         newArticle.UserID = GlobalBase.GetUserID()
                         db.Articles.InsertOnSubmit(newArticle)
                         db.SubmitChanges()
@@ -186,6 +190,14 @@
                     Using db As New BlogDbDataContext
                         Dim article As Articles = db.Articles.First(Function(articles) articles.ID = id)
                         article.Likes += 1
+                        If article.Likes Is Nothing Then
+                            article.Likes = 0
+                        End If
+
+                        If article.DisLikes Is Nothing Then
+                            article.DisLikes = 0
+                        End If
+
                         db.SubmitChanges()
                     End Using
                     Return Json(New With {.result = True})

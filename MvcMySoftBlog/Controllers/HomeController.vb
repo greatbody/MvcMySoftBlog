@@ -6,7 +6,7 @@ Public Class HomeController
 
     Function Index() As ActionResult
         SetCurrent("Index")
-        ViewData("ArticleData") = GetList()
+        ViewData("ArticleData") = GetTopList()
         ViewData("RecentArticle") = GetRecentList()
         Return View()
     End Function
@@ -27,7 +27,7 @@ Public Class HomeController
     End Sub
 #End Region
 #Region "Business"
-    Public Function GetList() As IQueryable(Of Articles)
+    Public Function GetTopList() As IQueryable(Of Articles)
         Dim articles As IQueryable(Of Articles)
         Dim db As New BlogDbDataContext
         articles = From articleCollection In db.Articles Select articleCollection Order By articleCollection.Likes Descending

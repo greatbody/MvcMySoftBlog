@@ -43,7 +43,7 @@
                 </div>
                 <div class="panel-body">
                     <ul class="list-inline">
-                        <%For Each article As Articles In ViewData("ArticleData")%>
+                        <%For Each article As Articles In ViewData("RecentArticle")%>
                         <li style="width: 100%; padding: 5px 0;"><a href="/Article/Article/<%=article.ID %>" title="<%= article.ArticleTitle %>">
                             <%= GlobalBase.GetShortTitle(article.ArticleTitle, 40)%></a> <span style="float: right">
                                 [<%= Format(article.LastUpdate, "yyyy-MM-dd HH:mm")%>]</span> </li>
