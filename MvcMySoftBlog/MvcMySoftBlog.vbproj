@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Controllers\HomeController.vb" />
     <Compile Include="Public\PubFunc.vb" />
+    <Compile Include="Controllers\UserController.vb" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Editor\net\config.json" />
@@ -471,6 +472,7 @@
     <Content Include="Scripts\Page\Create.js" />
     <Content Include="Scripts\Page\Edit.js" />
     <Content Include="Scripts\Page\Index.js" />
+    <Content Include="Scripts\Page\User\Info.js" />
     <Content Include="Views\Article\Article.aspx" />
     <Content Include="Views\Article\Create.aspx" />
     <Content Include="Views\Article\Edit.aspx" />
@@ -478,6 +480,7 @@
     <Content Include="Views\Article\Index.aspx" />
     <Content Include="Views\Home\JsonTest.aspx" />
     <Content Include="Views\Article\NoArticleFound.aspx" />
+    <Content Include="Views\User\Info.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
