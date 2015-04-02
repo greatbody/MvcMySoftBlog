@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\ArticleController.vb" />
+    <Compile Include="Core\UserBase.vb" />
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,6 +125,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Controllers\HomeController.vb" />
+    <Compile Include="Core\MyController.vb" />
     <Compile Include="Public\PubFunc.vb" />
     <Compile Include="Controllers\UserController.vb" />
   </ItemGroup>
